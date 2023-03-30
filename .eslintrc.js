@@ -38,4 +38,4 @@ module.exports = {
     '@typescript-eslint/no-inferrable-types': 0, //  允许变量后面添加类型
     '@typescript-eslint/no-non-null-assertion': 0
   }
-};
+}

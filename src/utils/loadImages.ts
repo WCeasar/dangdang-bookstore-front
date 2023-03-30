@@ -25,12 +25,9 @@ export class LoadImages {
   }
 
   static loadAllImages() {
-    const imagesMap = import.meta.glob<Record<string, any>>(
-      '../assets/img/**/*.png',
-      {
-        eager: true
-      }
-    )
+    const imagesMap = import.meta.glob<Record<string, any>>('../assets/img/**/*.png', {
+      eager: true
+    })
 
     let relativePath = ''
     for (const key in imagesMap) {
