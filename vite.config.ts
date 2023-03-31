@@ -1,9 +1,10 @@
 import { defineConfig, CommonServerOptions } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import fs from 'fs'
+import path from 'path'
 // 拓展之后需要引入DotenvParseOutput才能体现效果
 import dotenv, { DotenvParseOutput } from 'dotenv'
-
+1
 interface CustomDotenvParseOutput {
   VITE_PORT: number
   VITE_HOST: string
@@ -25,7 +26,6 @@ export default defineConfig((mode) => {
   const envMap: FinallyParseOutput = dotenv.parse(envData)
   // 生产模式和开发模式的vite.config.ts配置是不同的
   if (mode.mode === 'development') {
-    console.log('现在是生产者模式')
     server = {
       host: envMap.VITE_HOST,
       port: envMap.VITE_PORT,
@@ -41,9 +41,18 @@ export default defineConfig((mode) => {
       port: envMap.VITE_PORT
     }
   }
-  console.log(server)
   return {
     plugins: [vue()],
-    server
+    server,
+    resolve: {
+      alias: {
+        // 和 tsconfig.json 中 paths设置别名的区别，
+        //  paths 主要用于编译期间别名的设置。
+        // 而 vite.config.ts  中别名的设置主要用于
+        // yarn dev 和 yarn build 时检测 项目中的@路径
+        // ts别名配置只能保证编译期间正常运行，运行期间需要 vite 构建工具来识别，
+        '@': path.resolve(__dirname, 'src')
+      }
+    }
   }
 })

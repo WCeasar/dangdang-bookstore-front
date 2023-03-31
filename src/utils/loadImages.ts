@@ -7,9 +7,7 @@ export class LoadImages {
   public static imageList: Record<string, string> = {}
 
   static getImage(path: string) {
-    console.log(this)
-
-    return this.imageList[path]
+    return LoadImages.imageList[path]
   }
 
   static cacheImages() {

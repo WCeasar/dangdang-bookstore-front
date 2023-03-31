@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es2021",
+    "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
+
     "moduleResolution": "node",
     "allowJs": true,
-    "declaration": false,
+    "declaration": true,
     "strict": true,
     "jsx": "preserve",
     "sourceMap": true,
@@ -19,6 +20,5 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "./vite.config.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "./vite.config.ts"]
 }

@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "esnext", // 模块编译之后的es版本
+    "useDefineForClassFields": true, // 设置false的话定义的变量不赋值会被忽略,设置true之后不会被忽略
+    "module": "esnext", // 编译之后的文件是什么杨的规范,是cjs还是esm //  1 moduleResolution 模块解析
+    //  2 模块解析是 typescript 编译器用何种方式来确定导入所指内容。
+    //  moduleResolution："node" =>采用 node 模块解析的方式查找文件。[从内层到最高目录的外层查找 import 引入的文件]
+    // moduleResolution："classic" => 采用 classic 模块解析的方式查找文件。[从外层到内层方式查找 查找 import 引入的文件]
+    "moduleResolution": "node", // 引入依赖查找的方式 node和classic node:从内层到外层去寻找import引入的文件 classic:从外层到内层去寻找import引入的文件
+    "allowJs": true, // 是否允许用esm或者cjs的方式导入js文件
+    "declaration": true, // ts文件编译之后是否会生成声明文件
+    "strict": true, // 严格模式 有些语法是不能用的
+    "jsx": "preserve", // 表示vue当中去使用react的语法
+    "sourceMap": true, // ts文件编译之后会生成map文件,map文件会定位到原文件,使源文件ts文件和js文件有映射关系,我们在浏览器源代码中可以看到ts文件
+    "resolveJsonModule": true, // 允许在文件中映入json文件
+    "isolatedModules": true, // 1.开启之后在ts文件中必须做导出,不然文件内的变量就会被当做全局变量使用 2. 在导出接口等ts有和js没有的东西时,需要用export type来导出
+    "esModuleInterop": true, // 有些依赖库底层为了兼容cjs规范,amd规范这两者的规定中相互兼容,使用了export = ,将两者规范统一. 'exModuleImterop':true 表示允许依赖库中出现export = 这种兼容规范导出的格式,TS可以用import from 导入
+    "lib": ["esnext", "dom"], // 允许访问的底层依赖库
+    "skipLibCheck": true, // 对声明文件不进行类型检查
+    "baseUrl": ".", // '.'表示当前工程
+    "paths": {
+      "@/*": ["src/*"] // 映射别名输@/*能映射到src/*(相对路径不可靠)
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "./vite.config.ts"] // ts文件检测的范围
+  // "references": [{"path": "./tsconfig.node.json"}] // 将该配置文件和底下的配置文件进行合并,分散和分流(会引起bug, 先注释)
+}
