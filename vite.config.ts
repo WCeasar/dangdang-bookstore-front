@@ -4,7 +4,11 @@ import fs from 'fs'
 import path from 'path'
 // 拓展之后需要引入DotenvParseOutput才能体现效果
 import dotenv, { DotenvParseOutput } from 'dotenv'
-1
+
+// 因为DotenvParseOutput底层value要求时string类型, 因此number类型就不合适, 因此就不能使用接口继承拓展接口
+// export interface DotenvParseOutput {
+//   [name: string]: string;
+// }
 interface CustomDotenvParseOutput {
   VITE_PORT: number
   VITE_HOST: string
